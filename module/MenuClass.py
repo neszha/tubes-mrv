@@ -1,13 +1,17 @@
 import module.console as console
 import module.init as Route
 
+# Object untuk mengelola navigasi menu.
+# #
 class Menu:
+    # Constructor function.
     def __init__(self, use):
         self.use = use
         self.selected_main_menu = 0
         self.selected_menu_1 = 0
         self.selected_menu_2 = 0
 
+    # Kontrol menu utama.
     def main_menu(self):
         console.clear()
         print('>>> MENU UTAMA PROGRAM PERHITUNGAN MATRIKS <<<\n')
@@ -29,6 +33,7 @@ class Menu:
             console.selected_unknow()
             Route.menu.main_menu()
 
+    # Kontrol menu pada sub-menu spl.
     def menu_spl(self):
         console.clear()
         print('SPL -> Metode Perhitungan:')

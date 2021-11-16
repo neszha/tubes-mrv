@@ -1,6 +1,8 @@
 import module.console as console
 import module.init as Route
 
+# Object untuk menghanddle operasi guass.
+# #
 class Gauss:
     # Constructor function.
     def __init__(self, use):
@@ -48,8 +50,6 @@ class Gauss:
                 temp.append(int(input(msg.format(i + 1, j + 1))))
 
             self.matrix.append(temp)
-
-        print(self.matrix)
 
     # Membaca inputan data matriks dari file.
     # Default file => ``

@@ -1,6 +1,8 @@
 import module.console as console
 import module.init as Route
 
+# Object untuk menghanddle operasi guass jordan.
+# #
 class GaussJordan:
     def __init__(self, use):
         self.use = use
