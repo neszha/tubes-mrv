@@ -1,4 +1,3 @@
-from module.MenuClass import Menu
+from module.init import init
 
-menu = Menu(True)
-menu.main_menu()
+init()
