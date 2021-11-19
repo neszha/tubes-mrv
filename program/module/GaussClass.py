@@ -1,5 +1,6 @@
 import module.console as console
 import module.init as Route
+import module.matrix as matrix
 
 # Object untuk menghanddle operasi guass.
 # #
@@ -32,29 +33,14 @@ class Gauss:
 
     # Membaca inputan dari layar console.
     def input_matrix_from_console(self):
-        print('')
-
-        # Melakukan deklarasi persamaan.
-        m = int(input('Jumlah persamaan: '))
-        n = int(input('Jumlah variable: '))
-
-        # Input nilai matrix ke `self.matrix`
         self.matrix = []
-        for i in range(m):
-            temp = []
-            msg = '[#] Input persamaan ke-{0}'
-            print(msg.format(i + 1))
-
-            for j in range(n):
-                msg = '    X({0},{1}) = '
-                temp.append(int(input(msg.format(i + 1, j + 1))))
-
-            self.matrix.append(temp)
+        self.matrix = matrix.read_form_console()
 
     # Membaca inputan data matriks dari file.
-    # Default file => ``
     def input_matrix_from_file(self):
-        print('from file')
+        self.matrix = []
+        self.matrix = matrix.read_form_file()
+        print(self.matrix)
 
     # Handdle proses perhitungan dengan elimisi guass.
     def spl_core(self):

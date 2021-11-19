@@ -6,7 +6,7 @@ import module.init as Route
 class Menu:
     # Constructor function.
     def __init__(self, use):
-        self.use = use
+        # self.use = use
         self.selected_main_menu = 0
         self.selected_menu_1 = 0
         self.selected_menu_2 = 0
@@ -21,8 +21,8 @@ class Menu:
         print('[3] Menentukan Matriks Balikan')
         print('[99] Keluar')
 
-        # self.selected_main_menu = input('Input opsi: ')
-        self.selected_main_menu = '1'
+        self.selected_main_menu = input('Input opsi: ')
+        # self.selected_main_menu = '1'
 
         # Validasi input pilihan menu.
         if self.selected_main_menu == '99':
@@ -43,8 +43,8 @@ class Menu:
         print('[4] Kaidah Cramer')
         print('[99] Kembali ke Manu Utama')
 
-        # self.selected_menu_1 = input('Pilih Metode: ')
-        self.selected_menu_1 = '1'
+        self.selected_menu_1 = input('Pilih Metode: ')
+        # self.selected_menu_1 = '1'
 
         # Validasi input pilihan menu.
         if self.selected_menu_1 == '99':
