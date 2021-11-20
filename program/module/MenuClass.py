@@ -16,15 +16,14 @@ class Menu:
     def main_menu(self):
         console.clear()
         print('>>> MENU UTAMA PROGRAM PERHITUNGAN MATRIKS <<<\n')
-        print('Pilih opsi:')
         print('[1] Sistem Persamaan Linier (SPL)')
         print('[2] Matriks Hilbert')
         print('[3] Rangkaian Listrik')
         print('[4] Polinom Interpolasi')
         print('[99] Keluar')
 
-        # self.selected_main_menu = input('Input opsi: ')
-        self.selected_main_menu = '1'
+        self.selected_main_menu = input('\nPilih menu: ')
+        # self.selected_main_menu = '1'
 
         # Validasi input pilihan menu.
         if self.selected_main_menu == '99':

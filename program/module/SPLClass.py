@@ -1,28 +1,32 @@
+import numpy as np
 import module.console as console
 import module.init as Route
-import module.matrix as matrix
 
 # Object untuk menghanddle operasi guass.
 # #
 class SPL:
-    # Constructor function.
+    # Constructor method.
     def __init__(self, use):
         self.use = use
         self.selected_input = 0
+        self.selected_method = 0
         self.matrix = []
 
+    # Main method.
     def main(self):
         self.matrix_input_menu()
+        self.calculate_method_menu();
 
+    # Menampilkan menu metode input.
     def matrix_input_menu(self):
         console.clear()
-        print('\nSPL -> Metode Input:')
+        print('\nSPL -> [Metode Input]:')
         print('[1] Input dari Console')
         print('[2] Input dari File')
         print('[99] Kembali')
 
-        # self.selected_input = input('Masukan Pilihan: ')
-        self.selected_input = '1'
+        self.selected_input = input('\nMetode input? ')
+        # self.selected_input = '2'
 
         # Validasi pilihan metode input.
         if self.selected_input == '99':
@@ -35,10 +39,26 @@ class SPL:
 
         elif self.selected_input == '2':
             self.input_matrix_from_file()
-        else:
-            self.selected_unknow()
 
+        else:
+            # Handdle ketika inputan tidak tersedia.
+            console.selected_unknow()
+            self.matrix_input_menu()
+
+    def calculate_method_menu(self):
+        console.clear()
+        print('Persamaan dengan matriks argumented:')
+        print(self.matrix)
+        print('\nHitung menggukana?')
+        print('[1] Input dari Console')
+        print('[2] Input dari File')
+        print('[99] Kembali')
+
+    # Input persamaan SLP ke dalam metriks argumented.
     def input_matrix_from_console(self):
+        console.clear()
+        print('\nSPL -> Input Console:')
+
         # Melakukan deklarasi persamaan.
         m = int(input('\nJumlah persamaan: '))
         n = int(input('Jumlah variable: '))
@@ -58,39 +78,16 @@ class SPL:
             m_row.append(int(input(msg.format(i + 1, j_next + 1))))
             self.matrix.append(m_row)
 
-        print(self.matrix)
+        self.matrix = np.array(self.matrix)
 
-    # # Kontrol menu pada perhitungan dengan metode gauss.
-    # def menu(self):
-    #     console.clear()
-    #     print('\nSPL -> Gauss -> Metode Input:')
-    #     print('[1] Input dari Console')
-    #     print('[2] Input dari File')
-    #     print('[99] Kembali')
-    #
-    #     # self.selected_input = input('Masukan Pilihan: ')
-    #     self.selected_input = '1'
-    #
-    #     if self.selected_input == '99':
-    #         Route.menu.menu_spl()
-    #     elif self.selected_input == '1':
-    #         self.input_matrix_from_console()
-    #     elif self.selected_input == '2':
-    #         self.input_matrix_from_file()
-    #     else:
-    #         self.selected_unknow()
-    #
-    # # Membaca inputan dari layar console.
-    # def input_matrix_from_console(self):
-    #     self.matrix = []
-    #     self.matrix = matrix.read_form_console()
-    #
-    # # Membaca inputan data matriks dari file.
-    # def input_matrix_from_file(self):
-    #     self.matrix = []
-    #     self.matrix = matrix.read_form_file()
-    #     print(self.matrix)
-    #
-    # # Handdle proses perhitungan dengan elimisi guass.
-    # def spl_core(self):
-    #     print('core')
+    # Membaca inputan data matriks dari file.
+    # Path file absolute dari folder '../test/'
+    # Default path file => `spl_input.txt`
+    def input_matrix_from_file(self):
+        path = ['../test/', 'spl_input.txt']
+        temp = '\nMasukan nama file (default: {0}): '
+        temp_input = str(input(temp.format(path[1])))
+        if temp_input != '':
+            path[1]= temp_input
+        full_path = ''.join(path)
+        self.matrix = np.loadtxt(full_path, dtype='i', delimiter=' ')
