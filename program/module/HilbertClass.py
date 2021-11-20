@@ -1,7 +1,6 @@
 import numpy as np
 import module.console as console
 import module.init as Route
-import module.matrix as matrix
 
 # Object untuk ...
 # #

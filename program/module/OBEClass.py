@@ -10,3 +10,9 @@ class OBE:
         self.use = use
         self.selected_input = 0
         self.matrix = []
+
+    def gauss(self):
+        print('gauss')
+
+    def gauss_jordan(self):
+        print('gauss_jordan')
