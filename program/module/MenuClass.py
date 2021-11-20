@@ -22,8 +22,8 @@ class Menu:
         print('[4] Polinom Interpolasi')
         print('[99] Keluar')
 
-        self.selected_main_menu = input('\nPilih menu: ')
-        # self.selected_main_menu = '1'
+        # self.selected_main_menu = input('\nPilih menu: ')
+        self.selected_main_menu = '1'
 
         # Validasi input pilihan menu.
         if self.selected_main_menu == '99':

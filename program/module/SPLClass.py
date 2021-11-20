@@ -1,6 +1,7 @@
 import numpy as np
 import module.console as console
 import module.init as Route
+from module.OBEClass import OBE
 
 # Object untuk menghanddle operasi guass.
 # #
@@ -25,13 +26,13 @@ class SPL:
         print('[2] Input dari File')
         print('[99] Kembali')
 
-        self.selected_input = input('\nMetode input? ')
-        # self.selected_input = '2'
+        # self.selected_input = input('\nMetode input? ')
+        self.selected_input = '2'
 
         # Validasi pilihan metode input.
         if self.selected_input == '99':
             # Kembali ke menu utama.
-            Route.menu.menu_spl()
+            Route.menu.main_menu()
 
         elif self.selected_input == '1':
             # Input matriks dari layar console.
@@ -49,10 +50,28 @@ class SPL:
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
-        print('\nHitung menggukana?')
-        print('[1] Input dari Console')
-        print('[2] Input dari File')
+        print('\nEliminasi Menu:')
+        print('[1] Eliminasi Gauss')
+        print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
+
+        # self.selected_method = input('\nHitung menggukana? ')
+        self.selected_method = '1'
+
+        # Validasi pilihan metode eliminasi.
+        if self.selected_method == '99':
+            # Kembali ke input matrix menu.
+            self.matrix_input_menu()
+
+        elif self.selected_method == '1':
+            # Menghitung SPL dengan eliminasi gauss.
+            obe = OBE(self.matrix)
+            obe.gauss()
+
+        else:
+            # Handdle ketika inputan tidak tersedia.
+            console.selected_unknow()
+            self.calculate_method_menu()
 
     # Input persamaan SLP ke dalam metriks argumented.
     def input_matrix_from_console(self):
@@ -84,9 +103,14 @@ class SPL:
     # Path file absolute dari folder '../test/'
     # Default path file => `spl_input.txt`
     def input_matrix_from_file(self):
+        console.clear()
+        print('SPL -> Input File:')
+        print('\nLokasi file absolute dari folder `../test/`')
+
         path = ['../test/', 'spl_input.txt']
-        temp = '\nMasukan nama file (default: {0}): '
-        temp_input = str(input(temp.format(path[1])))
+        temp = 'Masukan nama file (default: {0}): '
+        # temp_input = str(input(temp.format(path[1])))
+        temp_input = ''
         if temp_input != '':
             path[1]= temp_input
         full_path = ''.join(path)
