@@ -21,7 +21,6 @@ ini1 = Matrix(True)
 ini1.set([1,2,3,4,5])
 ini1.show()
 
-
 ini2 = Matrix(True)
 ini2.show()
 ini1.show()
