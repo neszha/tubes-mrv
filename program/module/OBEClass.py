@@ -10,11 +10,11 @@ class OBE:
         self.matrix = matrix
 
     def gauss(self):
-        print('\n')
+        # print('\n')
         [row, col] = self.matrix.shape
 
-        print(self.matrix, '\n')
-        for i in range(0, 1):
+        # print(self.matrix, '\n')
+        for i in range(0, min(row, col)):
             # Mencari nilai 0 untuk dilakukan pivoting ke bawah.
             for j in range(row):
                 elm = self.matrix[j][i]
@@ -31,23 +31,28 @@ class OBE:
             elm_point = self.matrix[i][i]
             if elm_point != 1 or elm_point != 0:
                 for j in range(i, col):
-                    print('make 1:', self.matrix[i][j], elm_point)
+                    # print('make 1:', self.matrix[i][j], elm_point)
                     self.matrix[i][j] /= elm_point
-            print('\n', self.matrix)
+            # print('\n', self.matrix)
 
-            print('')
+            # print('')
             # Membuat element di bahwa 1 bernilai 0.
-            next_row = i + 1;
             for j in range(i + 1, row):
-                elm_up = self.matrix[i]
-                for k in range(col):
-                    elm = self.matrix[j][k]
-                    print('make 0:', elm, elm_up[k])
-                    self.matrix[j][k] -= elm * elm_up[k]
+                elms_up = self.matrix[i]
+                elms_point = self.matrix[j]
+                elm_poin = 0
 
-        print('\n', self.matrix)
-        print('belum kelar')
-            # break
+                # Mencari element sebagai titik perhitungan.
+                for a in range(len(elms_point)):
+                    if elms_point[a] != 0:
+                        elm_poin = elms_point[a]
+                        break;
+
+                # Melakukan operasi OBE pada kolom.
+                for k in range(col):
+                    self.matrix[j][k] -= elm_poin * elms_up[k]
+
+        # print('\n', self.matrix)
 
     def gauss_jordan(self):
         print('gauss_jordan')
