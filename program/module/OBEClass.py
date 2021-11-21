@@ -1,7 +1,3 @@
-# import numpy as np
-# import module.console as console
-# import module.init as Route
-
 # Object untuk menghanddle operasi OBE.
 # #
 class OBE:
@@ -9,11 +5,10 @@ class OBE:
     def __init__(self, matrix):
         self.matrix = matrix
 
+    # Melakukan eliminasi gauss pada matriks argumented.
     def gauss(self):
-        # print('\n')
         [row, col] = self.matrix.shape
 
-        # print(self.matrix, '\n')
         for i in range(0, min(row, col)):
             # Mencari nilai 0 untuk dilakukan pivoting ke bawah.
             for j in range(row):
@@ -31,16 +26,13 @@ class OBE:
             elm_point = self.matrix[i][i]
             if elm_point != 1 or elm_point != 0:
                 for j in range(i, col):
-                    # print('make 1:', self.matrix[i][j], elm_point)
                     self.matrix[i][j] /= elm_point
-            # print('\n', self.matrix)
 
-            # print('')
-            # Membuat element di bahwa 1 bernilai 0.
+            # Membuat element di bawah 1 bernilai 0.
             for j in range(i + 1, row):
+                elm_poin = 0
                 elms_up = self.matrix[i]
                 elms_point = self.matrix[j]
-                elm_poin = 0
 
                 # Mencari element sebagai titik perhitungan.
                 for a in range(len(elms_point)):
@@ -52,15 +44,41 @@ class OBE:
                 for k in range(col):
                     self.matrix[j][k] -= elm_poin * elms_up[k]
 
-        # print('\n', self.matrix)
+        return self.matrix
 
+    # Melakukan eliminasi gauss jordan pada matriks argumented.
     def gauss_jordan(self):
-        print('gauss_jordan')
+        # Malakukan OBE gauss.
+        self.gauss();
 
+        # Melanjutkan menjadi gauss jordan.
+        [row, col] = self.matrix.shape
+
+        for i in range(1, min(row, col)):
+            # Membuat element di atas 1 bernilai 0.
+            for j in range(0, i):
+                elm_poin = 0
+                elms_up = self.matrix[j]
+                elms_point = self.matrix[i]
+
+                # Mencari element sebagai titik perhitungan.
+                elm_poin = 0
+                for a in range(len(elms_up)):
+                    if elms_up[a] != 1 and elms_up[a] != 0:
+                        elm_poin = elms_up[a]
+                        break;
+
+                # Operasi eliminasi untuk membuat element 0.
+                for k in range(col):
+                    self.matrix[j][k] -= elm_poin * elms_point[k]
+
+        return self.matrix
+
+    # Melakukan pivoting atau pertukaran element kolom pada
+    # matriks argumented.
     def pivoting(self, from_row, to_row):
         if from_row == to_row:
             return True
-        print('pivoting', from_row, to_row)
         temp_row = self.matrix[to_row].copy()
         self.matrix[to_row] = self.matrix[from_row]
         self.matrix[from_row] = temp_row
