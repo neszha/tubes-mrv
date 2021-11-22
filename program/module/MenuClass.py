@@ -22,8 +22,8 @@ class Menu:
         print('[4] Polinom Interpolasi')
         print('[99] Keluar')
 
-        self.selected_main_menu = input('\nPilih menu: ')
-        # self.selected_main_menu = '1'
+        # self.selected_main_menu = input('\nPilih menu: ')
+        self.selected_main_menu = '1'
 
         # Validasi input pilihan menu.
         if self.selected_main_menu == '99':
@@ -47,8 +47,8 @@ class Menu:
         print('[2] Eliminasi Gauss-Jordan')
         print('[99] Kembali ke Manu Utama')
 
-        self.selected_menu_1 = input('Pilih Metode: ')
-        # self.selected_menu_1 = '1'
+        # self.selected_menu_1 = input('Pilih Metode: ')
+        self.selected_menu_1 = '1'
 
         # Validasi input pilihan menu.
         if self.selected_menu_1 == '99':

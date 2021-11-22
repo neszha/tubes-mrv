@@ -26,8 +26,8 @@ class SPL:
         print('[2] Input dari File')
         print('[99] Kembali')
 
-        self.selected_input = input('\nMetode input? ')
-        # self.selected_input = '2'
+        # self.selected_input = input('\nMetode input? ')
+        self.selected_input = '2'
 
         # Validasi pilihan metode input.
         if self.selected_input == '99':
@@ -55,8 +55,8 @@ class SPL:
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
 
-        self.selected_method = input('\nHitung menggukana? ')
-        # self.selected_method = '1'
+        # self.selected_method = input('\nHitung menggukana? ')
+        self.selected_method = '2'
 
         # Validasi pilihan metode eliminasi.
         if self.selected_method == '99':
@@ -65,8 +65,19 @@ class SPL:
 
         elif self.selected_method == '1':
             # Menghitung SPL dengan eliminasi gauss.
-            obe = OBE(self.matrix)
+            obe = OBE(self.matrix.copy())
             obe.gauss()
+
+        elif self.selected_method == '2':
+            # Menghitung SPL dengan eliminasi gauss jordan.
+            obe = OBE(self.matrix.copy())
+            print(obe.matrix_origin)
+            print('')
+            obe.gauss()
+            print('')
+            print(obe.matrix)
+            # print('')
+            # print(obe.get_solution())
 
         else:
             # Handdle ketika inputan tidak tersedia.
@@ -109,8 +120,8 @@ class SPL:
 
         path = ['../test/', 'spl_input.txt']
         temp = 'Masukan nama file (default: {0}): '
-        temp_input = str(input(temp.format(path[1])))
-        # temp_input = ''
+        # temp_input = str(input(temp.format(path[1])))
+        temp_input = ''
         if temp_input != '':
             path[1]= temp_input
         full_path = ''.join(path)
