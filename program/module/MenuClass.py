@@ -1,6 +1,7 @@
 import module.console as console
 import module.init as Route
 from module.SPLClass import SPL
+from module.HilbertClass import Hilbert
 
 # Object untuk mengelola navigasi menu.
 # #
@@ -34,6 +35,11 @@ class Menu:
             # Menggunakan SPLClass untuk menghitung SLP
             spl = SPL(True)
             spl.main()
+            # Route.menu.menu_spl()
+        elif self.selected_main_menu == '2':
+            # Menggunakan HillbertClass
+            hilbert = Hilbert(True)
+            hilbert.main()
             # Route.menu.menu_spl()
         else:
             console.selected_unknow()
