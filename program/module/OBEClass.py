@@ -58,24 +58,33 @@ class OBE:
         # Melanjutkan menjadi gauss jordan.
         self.with_method = 'gauss_jordan'
         [row, col] = self.matrix.shape
-        # size = min(row, col)
-        size = 2
+        size = min(row, col)
+        size = 3
 
-        for i in range(0, size):
+        for i in range(size):
+            for j in range(size):
+                if i != j:
+                    ratio = self.matrix[j][i] / self.matrix[i][i]
+                    for k in range(size+1):
+                        self.matrix[j][k] -= ratio * self.matrix[i][k]
+
+
             # Membuat element di atas 1 bernilai 0.
-            for j in range(0, i):
-                # Mencari titik di samping element 1 utama.
-                elm_point = 1
-                for j in range(i, col):
-                    elm = self.matrix[i - 1][j]
-                    if elm != 0:
-                        elm_point = elm;
-                        break
+            # for j in range(0, i):
+            #     # Mencari titik di samping element 1 utama.
+            #     elm_point = 1
+            #     for j in range(i, col):
+            #         elm = self.matrix[i - 1][j]
+            #         if elm != 0:
+            #             elm_point = elm;
+            #             break
+            #
+            #     print(elm_point)
 
                 # Operasi eliminasi untuk membuat element 0.
-                for j in range(col):
-                    print(elm_point, self.matrix[i][j])
-                    # self.matrix[j][k] -= elm_poin * elms_point[k]
+                # for j in range(col):
+                    # print(elm_point, self.matrix[i][j])
+                    # self.matrix[i - 1][j] -= elm_point * self.matrix[i][j]
 
                 # print(elm_point)
 
