@@ -73,7 +73,7 @@ class SPL:
             obe = OBE(self.matrix.copy())
             print(obe.matrix_origin)
             print('')
-            obe.gauss()
+            obe.gauss_jordan()
             print('')
             print(obe.matrix)
             # print('')
