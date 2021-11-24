@@ -49,7 +49,7 @@ class SPL:
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
 
-        self.selected_method = input('\n(?) Hitung menggukana? ')
+        self.selected_method = input('\n(?) Hitung menggunakan? ')
         # self.selected_method = '1'
 
         # Validasi pilihan metode eliminasi.

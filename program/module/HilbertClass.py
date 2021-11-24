@@ -39,7 +39,7 @@ class Hilbert:
         print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
-        choice = input('\n(?) Hitung menggukana? ')
+        choice = input('\n(?) Hitung menggunakan? ')
 
         # Validasi pilihan metode eliminasi.
         if choice == '99': # Kembali ke menu utama.
