@@ -3,21 +3,21 @@ import module.console as console
 import module.init as Route
 from module.OBEClass import OBE
 
-# Object untuk menghanddle operasi guass.
+# Object untuk menyelesaikan permasalahan SPL.
 # #
 class SPL:
-    # Constructor method.
+    ### Constructor method.
     def __init__(self, use):
         self.selected_input = 0
         self.selected_method = 0
         self.matrix = []
 
-    # Main method.
+    ### Main method.
     def main(self):
         self.matrix_input_menu()
         self.calculate_method_menu();
 
-    # Menampilkan menu metode input.
+    ### Menampilkan menu metode input.
     def matrix_input_menu(self):
         console.clear()
         print('\nSPL -> [Metode Input]:')
@@ -39,7 +39,7 @@ class SPL:
             console.selected_unknow()
             self.matrix_input_menu()
 
-    # Menu untuk memilih jenis perhitungan yang akan dipakai.
+    ### Menu untuk memilih jenis perhitungan yang akan dipakai.
     def calculate_method_menu(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')
@@ -67,7 +67,7 @@ class SPL:
             console.selected_unknow()
             self.calculate_method_menu()
 
-    # Input persamaan SLP ke dalam metriks argumented.
+    ### Input persamaan SLP ke dalam metriks argumented.
     def input_matrix_from_console(self):
         console.clear()
         print('\nSPL -> Input Console:')
@@ -93,9 +93,9 @@ class SPL:
 
         self.matrix = np.array(self.matrix, dtype = float)
 
-    # Membaca inputan data matriks dari file.
-    # Path file absolute dari folder '../test/'
-    # Default path file => `spl_input.txt`
+    ### Membaca inputan data matriks dari file.
+    ### Path file absolute dari folder '../test/'
+    ### Default path file => `spl_input.txt`
     def input_matrix_from_file(self):
         console.clear()
         print('SPL -> Input File:')
@@ -103,9 +103,7 @@ class SPL:
 
         path = ['../test/', 'spl_input.txt']
         temp = 'Masukan nama file (default: {0}): '
-        # temp_input = str(input(temp.format(path[1])))
-        temp_input = ''
-        if temp_input != '':
-            path[1]= temp_input
+        temp_input = str(input(temp.format(path[1])))
+        if temp_input != '': path[1]= temp_input
         full_path = ''.join(path)
         self.matrix = np.loadtxt(full_path, dtype = float, delimiter = ' ')

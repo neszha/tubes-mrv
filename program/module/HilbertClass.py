@@ -3,34 +3,34 @@ import module.console as console
 import module.init as Route
 from module.OBEClass import OBE
 
-# Object untuk ...
+# Object untuk menyelesaikan permasalahan SPL pada matriks hilbert.
 # #
 class Hilbert:
-    # Constructor method.
+    ### Constructor method.
     def __init__(self, use):
         self.size = 0
         self.matrix = []
 
-    # Main method.
+    ### Main method.
     def main(self):
         self.input_size()
         self.generate_matriks_hilbert()
         self.calculate_method_menu()
 
-    # Input ukuran matriks hilbert.
+    ### Input ukuran matriks hilbert.
     def input_size(self):
         console.clear()
         print('\nHilbert -> Input Ukuran:')
         self.size = int(input('\n(?) Ukuran matriks hilbert (n*n): '))
         self.matrix = np.ones((self.size, self.size + 1))
 
-    # Menyusun element matriks dengan aturan pada matriks hilbert.
+    ### Menyusun element matriks dengan aturan pada matriks hilbert.
     def generate_matriks_hilbert(self):
         for i in range(self.size):
             for j in range(self.size):
                 self.matrix[i][j] = round(1/(i+j+1), 2)
 
-    # Menu untuk memilih jenis perhitungan yang akan dipakai.
+    ### Menu untuk memilih jenis perhitungan yang akan dipakai.
     def calculate_method_menu(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')

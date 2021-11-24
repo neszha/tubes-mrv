@@ -2,10 +2,10 @@ import numpy as np
 import module.console as console
 import string
 
-# Class untuk menghanddle operasi OBE.
+# Object untuk melakukan operasi OBE.
 # #
 class OBE:
-    # Constructor method.
+    ### Constructor method.
     def __init__(self, matrix):
         self.matrix = matrix
         self.matrix_origin = matrix.copy()
@@ -13,14 +13,14 @@ class OBE:
         self.solution_message = 0 # [-1: Solusi banyak, 0: Tidak ada solusi, 1: Solusi unik]
         self.solution = []
 
-    # Mengambil hasil persamaan dari persamaan matriks argumented.
+    ### Mengambil hasil persamaan dari persamaan matriks argumented.
     def get_solution(self):
         self.validate_solution()
         if self.with_method == 'gauss': self.generate_solution_gauss()
         elif self.with_method == 'gauss_jordan': self.generate_solution_gauss_jordan()
         return self.solution
 
-    # Melakukan eliminasi gauss pada matriks argumented.
+    ### Melakukan eliminasi gauss pada matriks argumented.
     def gauss(self):
         self.with_method = 'gauss'
         [row, col] = self.matrix.shape
@@ -54,7 +54,7 @@ class OBE:
 
         return self.matrix
 
-    # Melakukan eliminasi gauss jordan pada matriks argumented.
+    ### Melakukan eliminasi gauss jordan pada matriks argumented.
     def gauss_jordan(self):
         # Malakukan OBE gauss.
         self.gauss();
@@ -75,16 +75,16 @@ class OBE:
 
         return self.matrix
 
-    # Melakukan pivoting atau pertukaran element kolom pada
-    # matriks argumented.
+    ### Melakukan pivoting atau pertukaran element kolom pada
+    ### matriks argumented.
     def pivoting(self, from_row, to_row):
         if from_row == to_row: return True
         temp_row = self.matrix[to_row].copy()
         self.matrix[to_row] = self.matrix[from_row]
         self.matrix[from_row] = temp_row
 
-    # Mencari hasil persamaan dari pertihungan matriks argumented
-    # dengan eliminasi gauss.
+    ### Mencari hasil persamaan dari pertihungan matriks argumented
+    ### dengan eliminasi gauss.
     def generate_solution_gauss(self):
         [row, col] = self.matrix.shape
         n = col-1;
@@ -102,8 +102,8 @@ class OBE:
             self.generate_solution_with_parameters()
 
 
-    # Mencari hasil persamaan dari pertihungan matriks argumented
-    # dengan eliminasi gauss jordan.
+    ### Mencari hasil persamaan dari pertihungan matriks argumented
+    ### dengan eliminasi gauss jordan.
     def generate_solution_gauss_jordan(self):
         [row, col] = self.matrix.shape
         self.solution = np.zeros(col-1)
@@ -112,6 +112,7 @@ class OBE:
         elif self.solution_message == -1: # Jika memiliki solusi banyak.
             self.generate_solution_with_parameters()
 
+    ### Membuat persamaan SPL dengan parameter.
     def generate_solution_with_parameters(self):
         # Mencari solusi dalam bentuk parameter.
         [row, col] = self.matrix.shape
@@ -138,8 +139,8 @@ class OBE:
 
         self.solution = matrix_solution[::-1]
 
-    # Menantukan apakah hasil operasi OBE menghasilkan solusi
-    # unik, banyak, ataupun tidak memiliki solusi.
+    ### Menantukan apakah hasil operasi OBE menghasilkan solusi
+    ### unik, banyak, ataupun tidak memiliki solusi.
     def validate_solution(self):
         [row, col] = self.matrix.shape
         elms_end = self.matrix[row-1]
@@ -147,7 +148,7 @@ class OBE:
         elif not(elms_end[col-1]) and not(elms_end[col-2]): self.solution_message = -1 # Solusi banyak.
         else: self.solution_message = 0 # Tidak ada solusi.
 
-    # Menampilkan hasil persamaan.
+    ### Menampilkan hasil persamaan.
     def show_result(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')
