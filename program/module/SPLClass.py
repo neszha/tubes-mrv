@@ -39,10 +39,12 @@ class SPL:
             console.selected_unknow()
             self.matrix_input_menu()
 
+    # Menu untuk memilih jenis perhitungan yang akan dipakai.
     def calculate_method_menu(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
+
         print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
