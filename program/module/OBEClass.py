@@ -1,4 +1,5 @@
 import numpy as np
+import module.console as console
 
 # Class untuk menghanddle operasi OBE.
 # #
@@ -8,10 +9,12 @@ class OBE:
         self.matrix = matrix
         self.matrix_origin = matrix.copy()
         self.with_method = None
+        self.solution_param = 0 # [-1: Solusi banyak, 0: Tidak ada solusi, 1: Solusi unik]
         self.solution = None
 
     # Mengambil hasil persamaan dari persamaan matriks argumented.
     def get_solution(self):
+        self.validate_solution()
         if self.with_method == 'gauss':
             self.generate_solution_gauss()
         elif self.with_method == 'gauss_jordan':
@@ -102,3 +105,34 @@ class OBE:
         self.solution = np.zeros(col-1)
         for i in range(row):
             self.solution[i] = self.matrix[i][col-1]
+
+    # Menantukan apakah hasil operasi OBE menghasilkan solusi
+    # unik, banyak, ataupun tidak memiliki solusi.
+    def validate_solution(self):
+        [row, col] = self.matrix.shape
+        elms_end = self.matrix[row-1]
+        if elms_end[col-1] and elms_end[col-2]: # Solusi unik.
+            self.solution_param = 1
+        elif elms_end[col-1] and not(elms_end[col-2]): # Solusi banyak.
+            self.solution_param = -1
+        else: # Tidak ada solusi.
+            self.solution_param = 0
+
+    # Menampilkan hasil persamaan.
+    def show_result(self):
+        console.clear()
+        print('Persamaan dengan matriks argumented:')
+        print(self.matrix_origin)
+
+        self.get_solution()
+        if self.solution_param == 1: result = 'Solusi unik.'
+        elif self.solution_param == -1: result = 'Solusi banyak.'
+        else: result = 'Tidak ada solusi.'
+
+        print('\n=> Hasil: ' + result)
+
+        if not(self.solution_param): return
+
+        n = len(self.solution)
+        for i in range(n):
+            print('X[' + str(i+1) + '] = ' + str(self.solution[i]))

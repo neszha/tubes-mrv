@@ -50,12 +50,12 @@ class SPL:
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
-        print('\nEliminasi Menu:')
-        print('[1] Eliminasi Gauss')
+        # print('\nMenu Eliminasi:')
+        print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
 
-        # self.selected_method = input('\nHitung menggukana? ')
+        # self.selected_method = input('[?] Hitung menggukana? ')
         self.selected_method = '1'
 
         # Validasi pilihan metode eliminasi.
@@ -66,13 +66,8 @@ class SPL:
         elif self.selected_method == '1':
             # Menghitung SPL dengan eliminasi gauss.
             obe = OBE(self.matrix.copy())
-            print(obe.matrix_origin)
-            print('')
             obe.gauss()
-            print('')
-            print(obe.matrix)
-            # print('')
-            print(obe.get_solution())
+            obe.show_result()
 
         elif self.selected_method == '2':
             # Menghitung SPL dengan eliminasi gauss jordan.
