@@ -1,6 +1,6 @@
 import numpy as np
+import module.init as init
 import module.console as console
-import module.init as Route
 from module.OBEClass import OBE
 
 # Object untuk menyelesaikan permasalahan SPL pada matriks hilbert.

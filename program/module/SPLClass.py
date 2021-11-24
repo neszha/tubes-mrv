@@ -1,6 +1,6 @@
 import numpy as np
+import module.init as init
 import module.console as console
-import module.init as Route
 from module.OBEClass import OBE
 
 # Object untuk menyelesaikan permasalahan SPL.
@@ -30,7 +30,7 @@ class SPL:
 
         # Validasi pilihan metode input.
         if self.selected_input == '99':
-            Route.menu.main_menu() # Kembali ke menu utama.
+            init.main_menu() # Kembali ke menu utama.
         elif self.selected_input == '1':
             self.input_matrix_from_console() # Input matriks dari layar console.
         elif self.selected_input == '2':

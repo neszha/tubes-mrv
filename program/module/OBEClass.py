@@ -1,6 +1,6 @@
+import string
 import numpy as np
 import module.console as console
-import string
 
 # Object untuk melakukan operasi OBE.
 # #
