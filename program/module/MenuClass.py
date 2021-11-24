@@ -1,6 +1,8 @@
 import module.console as console
 import module.init as Route
 from module.SPLClass import SPL
+from module.HilbertClass import Hilbert
+from module.ElectricClass import Electric
 
 # Object untuk mengelola navigasi menu.
 # #
@@ -35,6 +37,18 @@ class Menu:
             spl = SPL(True)
             spl.main()
             # Route.menu.menu_spl()
+        elif self.selected_main_menu == '2':
+        
+            # Menggunakan HillbertClass
+            hilbert = Hilbert(True)
+            hilbert.main()
+            
+        elif self.selected_main_menu == '3':
+        
+            # Menggunakan ElectricClass
+            electric = Electric(True)
+            electric.main()
+            
         else:
             console.selected_unknow()
             Route.menu.main_menu()
