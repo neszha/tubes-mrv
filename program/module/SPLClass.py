@@ -56,7 +56,7 @@ class SPL:
         print('[99] Kembali')
 
         # self.selected_method = input('\nHitung menggukana? ')
-        self.selected_method = '2'
+        self.selected_method = '1'
 
         # Validasi pilihan metode eliminasi.
         if self.selected_method == '99':
@@ -66,7 +66,13 @@ class SPL:
         elif self.selected_method == '1':
             # Menghitung SPL dengan eliminasi gauss.
             obe = OBE(self.matrix.copy())
+            print(obe.matrix_origin)
+            print('')
             obe.gauss()
+            print('')
+            print(obe.matrix)
+            # print('')
+            print(obe.get_solution())
 
         elif self.selected_method == '2':
             # Menghitung SPL dengan eliminasi gauss jordan.
@@ -77,7 +83,7 @@ class SPL:
             print('')
             print(obe.matrix)
             # print('')
-            # print(obe.get_solution())
+            print(obe.get_solution())
 
         else:
             # Handdle ketika inputan tidak tersedia.

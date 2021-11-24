@@ -1,4 +1,6 @@
-# Object untuk menghanddle operasi OBE.
+import numpy as np
+
+# Class untuk menghanddle operasi OBE.
 # #
 class OBE:
     # Constructor method.
@@ -10,7 +12,7 @@ class OBE:
 
     # Mengambil hasil persamaan dari persamaan matriks argumented.
     def get_solution(self):
-        if self.with_method == 'gaus':
+        if self.with_method == 'gauss':
             self.generate_solution_gauss()
         elif self.with_method == 'gauss_jordan':
             self.generate_solution_gauss_jordan()
@@ -80,8 +82,23 @@ class OBE:
         self.matrix[to_row] = self.matrix[from_row]
         self.matrix[from_row] = temp_row
 
-    def generate_solution_gauss():
-        prin('')
+    # Mencari hasil persamaan dari pertihungan matriks argumented
+    # dengan eliminasi gauss.
+    def generate_solution_gauss(self):
+        [row, col] = self.matrix.shape
+        n = col-1;
+        self.solution = np.zeros(col-1)
+        self.solution[n-1] = self.matrix[n-1][n] / self.matrix[n-1][n-1]
+        for i in range(n-2, -1, -1):
+            self.solution[i] = self.matrix[i][n]
+            for j in range(i+1, n):
+                self.solution[i] -= self.matrix[i][j] * self.solution[j]
+            self.solution[i] /= self.matrix[i][i]
 
+    # Mencari hasil persamaan dari pertihungan matriks argumented
+    # dengan eliminasi gauss jordan.
     def generate_solution_gauss_jordan(self):
-        print('')
+        [row, col] = self.matrix.shape
+        self.solution = np.zeros(col-1)
+        for i in range(row):
+            self.solution[i] = self.matrix[i][col-1]

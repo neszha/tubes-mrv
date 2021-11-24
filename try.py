@@ -4,7 +4,7 @@ import sys
 
 # Reading number of unknowns
 # n = int(input('Enter number of unknowns: '))
-n = 3
+n = 2
 
 # Making numpy array of n x n+1 size and initializing
 # to zero for storing augmented matrix
@@ -21,7 +21,7 @@ x = np.zeros(n)
 #         a[i][j] = float(input( 'a['+str(i)+']['+ str(j)+']='))
 #
 # print(a)
-a = np.array(([4,-3,10,6], [3,-2,7,3], [2,-1,5,4]))
+a = np.array(([1,2,3], [4,5,6]))
 
 # Applying Gauss Elimination
 for i in range(n):
@@ -37,7 +37,10 @@ for i in range(n):
 # print(a)
 # # Back Substitution
 print(a)
+
+print('before', x)
 x[n-1] = a[n-1][n]/a[n-1][n-1]
+print('after', x)
 
 for i in range(n-2,-1,-1):
     x[i] = a[i][n]
