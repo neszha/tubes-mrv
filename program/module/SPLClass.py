@@ -8,7 +8,6 @@ from module.OBEClass import OBE
 class SPL:
     # Constructor method.
     def __init__(self, use):
-        self.use = use
         self.selected_input = 0
         self.selected_method = 0
         self.matrix = []
@@ -26,23 +25,17 @@ class SPL:
         print('[2] Input dari File')
         print('[99] Kembali')
 
-        # self.selected_input = input('\nMetode input? ')
-        self.selected_input = '2'
+        self.selected_input = input('\n(?) Metode input? ')
+        # self.selected_input = '2'
 
         # Validasi pilihan metode input.
         if self.selected_input == '99':
-            # Kembali ke menu utama.
-            Route.menu.main_menu()
-
+            Route.menu.main_menu() # Kembali ke menu utama.
         elif self.selected_input == '1':
-            # Input matriks dari layar console.
-            self.input_matrix_from_console()
-
+            self.input_matrix_from_console() # Input matriks dari layar console.
         elif self.selected_input == '2':
-            self.input_matrix_from_file()
-
-        else:
-            # Handdle ketika inputan tidak tersedia.
+            self.input_matrix_from_file() # Input matriks dari file.
+        else: # Handdle ketika inputan tidak tersedia.
             console.selected_unknow()
             self.matrix_input_menu()
 
@@ -50,33 +43,25 @@ class SPL:
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
-        # print('\nMenu Eliminasi:')
         print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
 
-        # self.selected_method = input('[?] Hitung menggukana? ')
-        self.selected_method = '2'
+        self.selected_method = input('\n(?) Hitung menggukana? ')
+        # self.selected_method = '1'
 
         # Validasi pilihan metode eliminasi.
-        if self.selected_method == '99':
-            # Kembali ke input matrix menu.
+        if self.selected_method == '99': # Kembali ke input matrix menu.
             self.matrix_input_menu()
-
-        elif self.selected_method == '1':
-            # Menghitung SPL dengan eliminasi gauss.
+        elif self.selected_method == '1': # Menghitung SPL dengan eliminasi gauss.
             obe = OBE(self.matrix.copy())
             obe.gauss()
             obe.show_result()
-
-        elif self.selected_method == '2':
-            # Menghitung SPL dengan eliminasi gauss jordan.
+        elif self.selected_method == '2': # Menghitung SPL dengan eliminasi gauss jordan.
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             obe.show_result()
-
-        else:
-            # Handdle ketika inputan tidak tersedia.
+        else: # Handdle ketika inputan tidak tersedia.
             console.selected_unknow()
             self.calculate_method_menu()
 
@@ -100,7 +85,7 @@ class SPL:
                 msg = '    X({0},{1}) = '
                 m_row.append(int(input(msg.format(i + 1, j + 1))))
                 j_next += 1
-            msg = '    b({0},{1}) = '
+            msg = '    B({0},{1}) = '
             m_row.append(int(input(msg.format(i + 1, j_next + 1))))
             self.matrix.append(m_row)
 

@@ -7,7 +7,6 @@ from module.SPLClass import SPL
 class Menu:
     # Constructor function.
     def __init__(self, use):
-        # self.use = use
         self.selected_main_menu = 0
         self.selected_menu_1 = 0
         self.selected_menu_2 = 0
@@ -22,8 +21,8 @@ class Menu:
         print('[4] Polinom Interpolasi')
         print('[99] Keluar')
 
-        # self.selected_main_menu = input('\nPilih menu: ')
-        self.selected_main_menu = '1'
+        self.selected_main_menu = input('\n(?) Pilih menu: ')
+        # self.selected_main_menu = '1'
 
         # Validasi input pilihan menu.
         if self.selected_main_menu == '99':
@@ -47,14 +46,12 @@ class Menu:
         print('[2] Eliminasi Gauss-Jordan')
         print('[99] Kembali ke Manu Utama')
 
-        # self.selected_menu_1 = input('Pilih Metode: ')
-        self.selected_menu_1 = '1'
+        self.selected_menu_1 = input('\n(?) Pilih metode: ')
+        # self.selected_menu_1 = '1'
 
         # Validasi input pilihan menu.
-        if self.selected_menu_1 == '99':
-            Route.menu.main_menu()
-        elif self.selected_menu_1 == '1':
-            Route.gauss.menu()
+        if self.selected_menu_1 == '99': Route.menu.main_menu()
+        elif self.selected_menu_1 == '1': Route.gauss.menu()
         else:
             console.selected_unknow()
             Route.menu.menu_spl()
