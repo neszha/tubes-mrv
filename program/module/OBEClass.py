@@ -10,7 +10,7 @@ class OBE:
         self.matrix = matrix
         self.matrix_origin = matrix.copy()
         self.with_method = None
-        self.solution_param = 0 # [-1: Solusi banyak, 0: Tidak ada solusi, 1: Solusi unik]
+        self.solution_message = 0 # [-1: Solusi banyak, 0: Tidak ada solusi, 1: Solusi unik]
         self.solution = []
 
     # Mengambil hasil persamaan dari persamaan matriks argumented.
@@ -71,8 +71,7 @@ class OBE:
                     divider = self.matrix[i][i]
                     if not(divider): divider = 1
                     ratio = self.matrix[j][i] / divider
-                    for k in range(size+1):
-                        self.matrix[j][k] -= ratio * self.matrix[i][k]
+                    for k in range(size+1): self.matrix[j][k] -= ratio * self.matrix[i][k]
 
         return self.matrix
 
@@ -90,7 +89,7 @@ class OBE:
         [row, col] = self.matrix.shape
         n = col-1;
         self.solution = np.zeros(col-1)
-        if self.solution_param == 1: # Jika memiliki solusi unik.
+        if self.solution_message == 1: # Jika memiliki solusi unik.
             divider = self.matrix[n-1][n-1]
             if not(divider): divider = 1
             self.solution[n-1] = self.matrix[n-1][n] / divider
@@ -99,7 +98,7 @@ class OBE:
                 for j in range(i+1, n):
                     self.solution[i] -= self.matrix[i][j] * self.solution[j]
                 self.solution[i] /= self.matrix[i][i]
-        elif self.solution_param == -1: # Jika memiliki solusi banyak.
+        elif self.solution_message == -1: # Jika memiliki solusi banyak.
             self.generate_solution_with_parameters()
 
 
@@ -108,10 +107,9 @@ class OBE:
     def generate_solution_gauss_jordan(self):
         [row, col] = self.matrix.shape
         self.solution = np.zeros(col-1)
-        if self.solution_param == 1: # Jika memiliki solusi unik.
-            for i in range(row):
-                self.solution[i] = self.matrix[i][col-1]
-        elif self.solution_param == -1: # Jika memiliki solusi banyak.
+        if self.solution_message == 1: # Jika memiliki solusi unik.
+            for i in range(row): self.solution[i] = self.matrix[i][col-1]
+        elif self.solution_message == -1: # Jika memiliki solusi banyak.
             self.generate_solution_with_parameters()
 
     def generate_solution_with_parameters(self):
@@ -137,7 +135,7 @@ class OBE:
                         temp_solution.append(number_str + '('+ matrix_solution[j-2] +')')
                 temp_solution.append(to_string(elms_row[j+1]))
                 matrix_solution.append(' + '.join(temp_solution))
-                
+
         self.solution = matrix_solution[::-1]
 
     # Menantukan apakah hasil operasi OBE menghasilkan solusi
@@ -145,9 +143,9 @@ class OBE:
     def validate_solution(self):
         [row, col] = self.matrix.shape
         elms_end = self.matrix[row-1]
-        if elms_end[col-1] and elms_end[col-2]: self.solution_param = 1 # Solusi unik.
-        elif not(elms_end[col-1]) and not(elms_end[col-2]): self.solution_param = -1 # Solusi banyak.
-        else: self.solution_param = 0 # Tidak ada solusi.
+        if elms_end[col-1] and elms_end[col-2]: self.solution_message = 1 # Solusi unik.
+        elif not(elms_end[col-1]) and not(elms_end[col-2]): self.solution_message = -1 # Solusi banyak.
+        else: self.solution_message = 0 # Tidak ada solusi.
 
     # Menampilkan hasil persamaan.
     def show_result(self):
@@ -156,14 +154,11 @@ class OBE:
         print(self.matrix_origin)
 
         self.get_solution()
-        if self.solution_param == 1: result = 'Solusi unik.'
-        elif self.solution_param == -1: result = 'Solusi banyak.'
+        if self.solution_message == 1: result = 'Solusi unik/tunggal.'
+        elif self.solution_message == -1: result = 'Solusi banyak/tak terhingga.'
         else: result = 'Tidak ada solusi.'
 
         print('\n=> Hasil: ' + result)
-
-        if not(self.solution_param): return
-
-        n = len(self.solution)
-        for i in range(n):
+        if not(self.solution_message): return
+        for i in range(len(self.solution)):
             print('X[' + str(i+1) + '] = ' + str(self.solution[i]))
