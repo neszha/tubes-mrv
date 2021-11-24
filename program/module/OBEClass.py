@@ -15,10 +15,8 @@ class OBE:
     # Mengambil hasil persamaan dari persamaan matriks argumented.
     def get_solution(self):
         self.validate_solution()
-        if self.with_method == 'gauss':
-            self.generate_solution_gauss()
-        elif self.with_method == 'gauss_jordan':
-            self.generate_solution_gauss_jordan()
+        if self.with_method == 'gauss': self.generate_solution_gauss()
+        elif self.with_method == 'gauss_jordan': self.generate_solution_gauss_jordan()
         return self.solution
 
     # Melakukan eliminasi gauss pada matriks argumented.
@@ -44,8 +42,7 @@ class OBE:
                     break
 
             # Membuat element 1 utama.
-            for j in range(i, col):
-                self.matrix[i][j] /= elm_point
+            for j in range(i, col): self.matrix[i][j] /= elm_point
 
             # Membuat element di bawah 1 bernilai 0.
             for j in range(i + 1, size):
@@ -79,8 +76,7 @@ class OBE:
     # Melakukan pivoting atau pertukaran element kolom pada
     # matriks argumented.
     def pivoting(self, from_row, to_row):
-        if from_row == to_row:
-            return True
+        if from_row == to_row: return True
         temp_row = self.matrix[to_row].copy()
         self.matrix[to_row] = self.matrix[from_row]
         self.matrix[from_row] = temp_row
@@ -111,12 +107,9 @@ class OBE:
     def validate_solution(self):
         [row, col] = self.matrix.shape
         elms_end = self.matrix[row-1]
-        if elms_end[col-1] and elms_end[col-2]: # Solusi unik.
-            self.solution_param = 1
-        elif elms_end[col-1] and not(elms_end[col-2]): # Solusi banyak.
-            self.solution_param = -1
-        else: # Tidak ada solusi.
-            self.solution_param = 0
+        if elms_end[col-1] and elms_end[col-2]: self.solution_param = 1 # Solusi unik.
+        elif elms_end[col-1] and not(elms_end[col-2]): self.solution_param = -1 # Solusi banyak.
+        else: self.solution_param = 0 # Tidak ada solusi.
 
     # Menampilkan hasil persamaan.
     def show_result(self):
