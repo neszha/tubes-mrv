@@ -3,6 +3,7 @@ import time
 
 ### Membersihkan tampilan console.
 def clear():
+    print('')
     os.system('cls' if os.name=='nt' else 'clear')
 
 ### Keluar dari program dengan sebuah pesan.

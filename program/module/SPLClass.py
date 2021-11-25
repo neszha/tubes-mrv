@@ -8,8 +8,6 @@ from module.OBEClass import OBE
 class SPL:
     ### Constructor method.
     def __init__(self, use):
-        self.selected_input = 0
-        self.selected_method = 0
         self.matrix = []
 
     ### Main method.
@@ -25,15 +23,15 @@ class SPL:
         print('[2] Input dari File')
         print('[99] Kembali')
 
-        self.selected_input = input('\n(?) Metode input? ')
-        # self.selected_input = '2'
+        choice = input('\n(?) Metode input? ')
+        # choice = '2'
 
         # Validasi pilihan metode input.
-        if self.selected_input == '99':
+        if choice == '99':
             init.main_menu() # Kembali ke menu utama.
-        elif self.selected_input == '1':
+        elif choice == '1':
             self.input_matrix_from_console() # Input matriks dari layar console.
-        elif self.selected_input == '2':
+        elif choice == '2':
             self.input_matrix_from_file() # Input matriks dari file.
         else: # Handdle ketika inputan tidak tersedia.
             console.selected_unknow()
@@ -49,17 +47,17 @@ class SPL:
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
 
-        self.selected_method = input('\n(?) Hitung menggunakan? ')
-        # self.selected_method = '1'
+        choice = input('\n(?) Hitung menggunakan? ')
+        # choice = '1'
 
         # Validasi pilihan metode eliminasi.
-        if self.selected_method == '99': # Kembali ke input matrix menu.
+        if choice == '99': # Kembali ke input matrix menu.
             self.matrix_input_menu()
-        elif self.selected_method == '1': # Menghitung SPL dengan eliminasi gauss.
+        elif choice == '1': # Menghitung SPL dengan eliminasi gauss.
             obe = OBE(self.matrix.copy())
             obe.gauss()
             obe.show_result()
-        elif self.selected_method == '2': # Menghitung SPL dengan eliminasi gauss jordan.
+        elif choice == '2': # Menghitung SPL dengan eliminasi gauss jordan.
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             obe.show_result()
@@ -72,11 +70,9 @@ class SPL:
         console.clear()
         print('\nSPL -> Input Console:')
 
-        # Melakukan deklarasi persamaan.
-        m = int(input('\nJumlah persamaan: '))
-        n = int(input('Jumlah variable: '))
-
         # Input persamaan ke matriks argumented ke `self.matrix`.
+        m = int(input('\n(?) Jumlah persamaan: '))
+        n = int(input('(?) Jumlah variable: '))
         self.matrix = []
         for i in range(m):
             m_row = []
@@ -85,10 +81,10 @@ class SPL:
             j_next = 0
             for j in range(n):
                 msg = '    X({0},{1}) = '
-                m_row.append(int(input(msg.format(i + 1, j + 1))))
+                m_row.append(float(input(msg.format(i + 1, j + 1))))
                 j_next += 1
             msg = '    B({0},{1}) = '
-            m_row.append(int(input(msg.format(i + 1, j_next + 1))))
+            m_row.append(float(input(msg.format(i + 1, j_next + 1))))
             self.matrix.append(m_row)
 
         self.matrix = np.array(self.matrix, dtype = float)

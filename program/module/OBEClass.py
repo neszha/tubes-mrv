@@ -101,7 +101,6 @@ class OBE:
         elif self.solution_message == -1: # Jika memiliki solusi banyak.
             self.generate_solution_with_parameters()
 
-
     ### Mencari hasil persamaan dari pertihungan matriks argumented
     ### dengan eliminasi gauss jordan.
     def generate_solution_gauss_jordan(self):

@@ -1,6 +1,7 @@
 import module.console as console
 from module.SPLClass import SPL
 from module.HilbertClass import Hilbert
+from module.InterpolasiClass import Interpolasi
 
 ### Kontrol menu utama.
 def main_menu():
@@ -13,17 +14,25 @@ def main_menu():
     print('[99] Keluar')
 
     choice = input('\n(?) Pilih menu: ')
-    # choice = '2'
+    # choice = '4'
 
-    # Validasi input pilihan menu.
-    if choice == '99': # Keluar dari console program.
-        console.out()
-    elif choice == '1': # Menggunakan SPLClass untuk menghitung SLP.
+    # Keluar dari console program.
+    if choice == '99': console.out()
+
+    # Menggunakan SPLClass untuk menghitung SLP.
+    elif choice == '1':
         spl = SPL(True)
         spl.main()
-    elif choice == '2': # Menggunakan HillbertClass untuk memecahkan matriks hilbert.
+
+    # Menggunakan HillbertClass untuk memecahkan matriks hilbert.
+    elif choice == '2':
         hilbert = Hilbert(True)
         hilbert.main()
-    else: # Handdle ketika inputan tidak tersedia.
+
+    # Menggunakan InterpolasiClass untuk memecahkan matriks polinom interpolasi.
+    elif choice == '4': Interpolasi(True)
+
+    # Handdle ketika inputan tidak tersedia.
+    else:
         console.selected_unknow()
         main_menu()
