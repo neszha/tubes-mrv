@@ -25,11 +25,14 @@ class Interpolasi:
 
         choice = input('\n(?) Metode input? ')
 
-        # Validasi pilihan metode input.
-        if choice == '99': init.main_menu() # Kembali ke menu utama.
-        elif choice == '1': self.input_points_from_console() # Input matriks dari layar console.
-        elif choice == '2': self.input_points_from_file() # Input matriks dari file.
-        else: # Handdle ketika inputan tidak tersedia.
+        # Kembali ke menu utama.
+        if choice == '99': init.main_menu()
+        # Input data dari layar console.
+        elif choice == '1': self.input_points_from_console()
+        # Input data dari file.
+        elif choice == '2': self.input_points_from_file()
+         # Handdle ketika inputan tidak tersedia.
+        else:
             console.selected_unknow()
             self.menu_input_method()
 
