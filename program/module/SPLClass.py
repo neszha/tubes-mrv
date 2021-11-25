@@ -10,8 +10,6 @@ class SPL:
     def __init__(self, use):
         self.matrix = []
 
-    ### Main method.
-    def main(self):
         self.matrix_input_menu()
         self.calculate_method_menu();
 
@@ -26,14 +24,14 @@ class SPL:
         choice = input('\n(?) Metode input? ')
         # choice = '2'
 
-        # Validasi pilihan metode input.
-        if choice == '99':
-            init.main_menu() # Kembali ke menu utama.
-        elif choice == '1':
-            self.input_matrix_from_console() # Input matriks dari layar console.
-        elif choice == '2':
-            self.input_matrix_from_file() # Input matriks dari file.
-        else: # Handdle ketika inputan tidak tersedia.
+        # Kembali ke menu utama.
+        if choice == '99': init.main_menu()
+        # Input matriks dari layar console.
+        elif choice == '1': self.input_matrix_from_console()
+        # Input matriks dari file.
+        elif choice == '2': self.input_matrix_from_file()
+        # Handdle ketika inputan tidak tersedia.
+        else:
             console.selected_unknow()
             self.matrix_input_menu()
 
@@ -42,7 +40,6 @@ class SPL:
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
-
         print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
@@ -50,18 +47,24 @@ class SPL:
         choice = input('\n(?) Hitung menggunakan? ')
         # choice = '1'
 
-        # Validasi pilihan metode eliminasi.
-        if choice == '99': # Kembali ke input matrix menu.
+        # Kembali ke input matrix menu.
+        if choice == '99':
             self.matrix_input_menu()
-        elif choice == '1': # Menghitung SPL dengan eliminasi gauss.
+
+        # Menghitung SPL dengan eliminasi gauss.
+        elif choice == '1':
             obe = OBE(self.matrix.copy())
             obe.gauss()
             obe.show_result()
-        elif choice == '2': # Menghitung SPL dengan eliminasi gauss jordan.
+
+        # Menghitung SPL dengan eliminasi gauss jordan.
+        elif choice == '2':
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             obe.show_result()
-        else: # Handdle ketika inputan tidak tersedia.
+
+        # Handdle ketika inputan tidak tersedia.
+        else:
             console.selected_unknow()
             self.calculate_method_menu()
 
@@ -97,6 +100,7 @@ class SPL:
         print('SPL -> Input File:')
         print('\nLokasi file absolute dari folder `../test/`')
 
+        # Menbaca data dari file.
         path = ['../test/', 'spl_input.txt']
         temp = 'Masukan nama file (default: {0}): '
         temp_input = str(input(temp.format(path[1])))

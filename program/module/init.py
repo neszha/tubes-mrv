@@ -20,15 +20,11 @@ def main_menu():
     if choice == '99': console.out()
 
     # Menggunakan SPLClass untuk menghitung SLP.
-    elif choice == '1':
-        spl = SPL(True)
-        spl.main()
+    elif choice == '1': SPL(True)
 
     # Menggunakan HillbertClass untuk memecahkan matriks hilbert.
-    elif choice == '2':
-        hilbert = Hilbert(True)
-        hilbert.main()
-
+    elif choice == '2': Hilbert(True)
+    
     # Menggunakan InterpolasiClass untuk memecahkan matriks polinom interpolasi.
     elif choice == '4': Interpolasi(True)
 

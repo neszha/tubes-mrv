@@ -11,11 +11,8 @@ class Hilbert:
         self.size = 0
         self.matrix = []
 
-    ### Main method.
-    def main(self):
         self.input_size()
         self.generate_matriks_hilbert()
-        self.calculate_method_menu()
 
     ### Input ukuran matriks hilbert.
     def input_size(self):
@@ -35,23 +32,27 @@ class Hilbert:
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
-
         print('\n[1] Eliminasi Gauss')
         print('[2] Eliminasi Guass Jordan')
         print('[99] Kembali')
         choice = input('\n(?) Hitung menggunakan? ')
 
-        # Validasi pilihan metode eliminasi.
-        if choice == '99': # Kembali ke menu utama.
-            Route.menu.main_menu()
-        elif choice == '1': # Menghitung SPL hilbert dengan eliminasi gauss.
+        # Kembali ke menu utama.
+        if choice == '99': Route.menu.main_menu()
+
+        # Menghitung SPL hilbert dengan eliminasi gauss.
+        elif choice == '1':
             obe = OBE(self.matrix.copy())
             obe.gauss()
             obe.show_result()
-        elif choice == '2': # Menghitung SPL hilbert dengan eliminasi gauss jordan.
+
+        # Menghitung SPL hilbert dengan eliminasi gauss jordan.
+        elif choice == '2':
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             obe.show_result()
-        else: # Handdle ketika inputan tidak tersedia.
+
+        # Handdle ketika inputan tidak tersedia.
+        else:
             console.selected_unknow()
             self.calculate_method_menu()

@@ -1,4 +1,4 @@
-from module.init import main_menu
+import module.init as init
 
 # Menampilkan menu utama `starting point`.
-main_menu()
+init.main_menu()

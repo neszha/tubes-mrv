@@ -95,7 +95,7 @@ class Interpolasi:
         print('Interpolasi -> Input File:')
         print('\nLokasi file absolute dari folder `../test/`')
 
-        # Menbaca data titik dari file.
+        # Menbaca data dari file.
         path = ['../test/', 'interpolasi_input.txt']
         temp = 'Masukan nama file (default: {0}): '
         temp_input = str(input(temp.format(path[1])))
