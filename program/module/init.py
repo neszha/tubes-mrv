@@ -9,7 +9,7 @@ def main_menu():
     print('[1] Sistem Persamaan Linier (SPL)')
     print('[2] Matriks Hilbert')
     print('[3] Rangkaian Listrik')
-    print('[4] Polinom Interpolasi')
+    print('[4] Interpolasi')
     print('[99] Keluar')
 
     choice = input('\n(?) Pilih menu: ')

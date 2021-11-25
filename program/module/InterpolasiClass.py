@@ -4,7 +4,7 @@ import module.console as console
 
 # Object untuk ...
 # #
-class Polinom:
+class Interpolasi:
     # Constructor method.
     def __init__(self, use):
         self.use = use
