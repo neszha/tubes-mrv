@@ -10,7 +10,7 @@ class Hilbert:
     def __init__(self, use):
         self.size = 0
         self.matrix = []
-        self.file_log = 'hilbert_activity.txt'
+        self.file_log = 'activity.txt'
         self.solution_data = {}
         self.solution = []
 
@@ -68,7 +68,7 @@ class Hilbert:
 
     ### Menyimpan aktifitas perhitungan ke dalam file.
     def save_activity(self):
-        path = ['../test/', self.file_log]
+        path = ['../test/hilbert/', self.file_log]
         full_path = ''.join(path)
         with open(full_path, 'a') as file:
             file.write(('*' * 70) + '\n')
