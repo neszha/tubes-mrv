@@ -11,9 +11,9 @@ class SPL:
         self.matrix = []
         self.output_in_file = False
         self.file = {
-            'in': 'spl_input.txt',
-            'out': 'spl_output.txt',
-            'log': 'spl_activity.txt'
+            'in': 'input.txt',
+            'out': 'output.txt',
+            'log': 'activity.txt'
         }
         self.solution_data = {}
         self.solution = []
@@ -103,16 +103,16 @@ class SPL:
         self.matrix = np.array(self.matrix, dtype = float)
 
     ### Membaca inputan data matriks dari file.
-    ### Path file absolute dari folder '../test/'
-    ### Default path file => `spl_input.txt`
+    ### Path file absolute dari folder '../test/spl/'
+    ### Default path file => `input.txt`
     def input_matrix_from_file(self):
         console.clear()
         print('SPL -> Input File:')
-        print('\nLokasi file absolute dari folder `../test/`')
+        print('\nLokasi file absolute dari folder `../test/spl/`')
 
         # Menbaca data dari file.
         self.output_in_file = True
-        path = ['../test/', self.file['in']]
+        path = ['../test/spl/', self.file['in']]
         temp = 'Masukan nama file (default: {0}): '
         temp_input = str(input(temp.format(path[1])))
         if temp_input != '': path[1]= temp_input
@@ -122,7 +122,7 @@ class SPL:
     ### Menyimpan aktifitas perhitungan ke dalam file.
     def save_activity(self):
         # Menambahkan aktifitas ke file.
-        path = ['../test/', self.file['log']]
+        path = ['../test/spl/', self.file['log']]
         full_path = ''.join(path)
         with open(full_path, 'a') as file:
             file.write(('*' * 70) + '\n')
@@ -135,7 +135,7 @@ class SPL:
 
         # Menampilkan output di file.
         if self.output_in_file:
-            path = ['../test/', self.file['out']]
+            path = ['../test/spl/', self.file['out']]
             full_path = ''.join(path)
             file = open(full_path, 'w')
             file.write('')
