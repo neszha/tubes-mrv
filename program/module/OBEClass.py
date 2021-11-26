@@ -43,7 +43,9 @@ class OBE:
                     break
 
             # Membuat element 1 utama.
-            for j in range(i, col): self.matrix[i][j] /= elm_point
+            for j in range(i, col):
+                if not(elm_point): elm_point = 1
+                self.matrix[i][j] /= elm_point
 
             # Membuat element di bawah 1 bernilai 0.
             for j in range(i + 1, size):
@@ -97,7 +99,9 @@ class OBE:
                 self.solution[i] = self.matrix[i][n]
                 for j in range(i+1, n):
                     self.solution[i] -= self.matrix[i][j] * self.solution[j]
-                self.solution[i] /= self.matrix[i][i]
+                divider = self.matrix[i][i]
+                if not(divider): divider = 1
+                self.solution[i] /= divider
         elif self.solution_message == -1: # Jika memiliki solusi banyak.
             self.generate_solution_with_parameters()
 

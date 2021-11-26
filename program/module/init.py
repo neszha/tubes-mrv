@@ -1,6 +1,7 @@
 import module.console as console
 from module.SPLClass import SPL
 from module.HilbertClass import Hilbert
+from module.ElectricClass import Electric
 from module.InterpolasiClass import Interpolasi
 
 ### Kontrol menu utama.
@@ -13,8 +14,8 @@ def main_menu():
     print('[4] Interpolasi')
     print('[99] Keluar')
 
-    choice = input('\n(?) Pilih menu: ')
-    # choice = '4'
+    # choice = input('\n(?) Pilih menu: ')
+    choice = '3'
 
     # Keluar dari console program.
     if choice == '99': console.out()
@@ -24,7 +25,10 @@ def main_menu():
 
     # Menggunakan HillbertClass untuk memecahkan matriks hilbert.
     elif choice == '2': Hilbert(True)
-    
+
+    # Menggunakan ElectricClass untuk memecahkan persoalan rangkaian listrik.
+    elif choice == '3': Electric(True)
+
     # Menggunakan InterpolasiClass untuk memecahkan matriks polinom interpolasi.
     elif choice == '4': Interpolasi(True)
 
