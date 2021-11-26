@@ -6,7 +6,7 @@ from module.OBEClass import OBE
 # Object untuk mengelola data titik mengunakan interpolasi polinom.
 # #
 class Interpolasi:
-    # Constructor method.
+    ### Constructor method.
     def __init__(self, run):
         self.points = []
         self.matrix = []

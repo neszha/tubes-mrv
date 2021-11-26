@@ -13,6 +13,7 @@ class Hilbert:
 
         self.input_size()
         self.generate_matriks_hilbert()
+        self.menu_calculate_method()
 
     ### Input ukuran matriks hilbert.
     def input_size(self):
@@ -28,7 +29,7 @@ class Hilbert:
                 self.matrix[i][j] = round(1/(i+j+1), 2)
 
     ### Menu untuk memilih jenis perhitungan yang akan dipakai.
-    def calculate_method_menu(self):
+    def menu_calculate_method(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)

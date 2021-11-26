@@ -14,8 +14,8 @@ def main_menu():
     print('[4] Interpolasi')
     print('[99] Keluar')
 
-    # choice = input('\n(?) Pilih menu: ')
-    choice = '3'
+    choice = input('\n(?) Pilih menu: ')
+    # choice = '3'
 
     # Keluar dari console program.
     if choice == '99': console.out()

@@ -27,9 +27,9 @@ class Electric:
         print('\nElectric -> Input:\n')
 
         # Input data.
-        # for key in self.input:
-        #     msg = '>> Masukan nilai [R12]: '
-        #     self.input[key] = float(input(msg))
+        for key in self.input:
+            msg = '>> Masukan nilai [{0}]: '
+            self.input[key] = float(input(msg.format(key)))
 
         # Menambahkan isi element dari nilai input `self.input`.
         x = self.matrix

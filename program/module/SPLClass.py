@@ -10,11 +10,11 @@ class SPL:
     def __init__(self, use):
         self.matrix = []
 
-        self.matrix_input_menu()
-        self.calculate_method_menu();
+        self.menu_matrix_input()
+        self.menu_calculate_method();
 
     ### Menampilkan menu metode input.
-    def matrix_input_menu(self):
+    def menu_matrix_input(self):
         console.clear()
         print('\nSPL -> [Metode Input]:')
         print('[1] Input dari Console')
@@ -22,7 +22,6 @@ class SPL:
         print('[99] Kembali')
 
         choice = input('\n(?) Metode input? ')
-        # choice = '2'
 
         # Kembali ke menu utama.
         if choice == '99': init.main_menu()
@@ -33,10 +32,10 @@ class SPL:
         # Handdle ketika inputan tidak tersedia.
         else:
             console.selected_unknow()
-            self.matrix_input_menu()
+            self.menu_matrix_input()
 
     ### Menu untuk memilih jenis perhitungan yang akan dipakai.
-    def calculate_method_menu(self):
+    def menu_calculate_method(self):
         console.clear()
         print('Persamaan dengan matriks argumented:')
         print(self.matrix)
@@ -45,11 +44,10 @@ class SPL:
         print('[99] Kembali')
 
         choice = input('\n(?) Hitung menggunakan? ')
-        # choice = '1'
 
         # Kembali ke input matrix menu.
         if choice == '99':
-            self.matrix_input_menu()
+            self.menu_matrix_input()
 
         # Menghitung SPL dengan eliminasi gauss.
         elif choice == '1':
@@ -66,7 +64,7 @@ class SPL:
         # Handdle ketika inputan tidak tersedia.
         else:
             console.selected_unknow()
-            self.calculate_method_menu()
+            self.menu_calculate_method()
 
     ### Input persamaan SLP ke dalam metriks argumented.
     def input_matrix_from_console(self):
