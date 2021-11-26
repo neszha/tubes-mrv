@@ -12,6 +12,7 @@ class OBE:
         self.with_method = None
         self.solution_message = 0 # [-1: Solusi banyak, 0: Tidak ada solusi, 1: Solusi unik]
         self.solution = []
+        self.solution_data = { 'message': None, 'data': [] }
 
     ### Mengambil hasil persamaan dari persamaan matriks argumented.
     def get_solution(self):
@@ -161,8 +162,12 @@ class OBE:
         if self.solution_message == 1: result = 'Solusi unik/tunggal.'
         elif self.solution_message == -1: result = 'Solusi banyak/tak terhingga.'
         else: result = 'Tidak ada solusi.'
+        self.solution_data['message'] = result
 
         print('\n=> Hasil: ' + result)
         if not(self.solution_message): return
         for i in range(len(self.solution)):
-            print('X[' + str(i+1) + '] = ' + str(self.solution[i]))
+            message = 'X[{0}] = {1}'
+            parse_msg = message.format(str(i+1), str(self.solution[i]))
+            self.solution_data['data'].append(parse_msg)
+            print(parse_msg)

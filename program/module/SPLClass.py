@@ -9,9 +9,18 @@ class SPL:
     ### Constructor method.
     def __init__(self, use):
         self.matrix = []
+        self.output_in_file = False
+        self.file = {
+            'in': 'spl_input.txt',
+            'out': 'spl_output.txt',
+            'log': 'spl_activity.txt'
+        }
+        self.solution_data = {}
+        self.solution = []
 
         self.menu_matrix_input()
-        self.menu_calculate_method();
+        self.menu_calculate_method()
+        self.save_activity()
 
     ### Menampilkan menu metode input.
     def menu_matrix_input(self):
@@ -46,20 +55,23 @@ class SPL:
         choice = input('\n(?) Hitung menggunakan? ')
 
         # Kembali ke input matrix menu.
-        if choice == '99':
-            self.menu_matrix_input()
+        if choice == '99': self.menu_matrix_input()
 
         # Menghitung SPL dengan eliminasi gauss.
         elif choice == '1':
             obe = OBE(self.matrix.copy())
             obe.gauss()
             obe.show_result()
+            self.solution = obe.get_solution()
+            self.solution_data = obe.solution_data
 
         # Menghitung SPL dengan eliminasi gauss jordan.
         elif choice == '2':
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             obe.show_result()
+            self.solution = obe.get_solution()
+            self.solution_data = obe.solution_data
 
         # Handdle ketika inputan tidak tersedia.
         else:
@@ -99,9 +111,35 @@ class SPL:
         print('\nLokasi file absolute dari folder `../test/`')
 
         # Menbaca data dari file.
-        path = ['../test/', 'spl_input.txt']
+        self.output_in_file = True
+        path = ['../test/', self.file['in']]
         temp = 'Masukan nama file (default: {0}): '
         temp_input = str(input(temp.format(path[1])))
         if temp_input != '': path[1]= temp_input
         full_path = ''.join(path)
         self.matrix = np.loadtxt(full_path, dtype = float, delimiter = ' ')
+
+    ### Menyimpan aktifitas perhitungan ke dalam file.
+    def save_activity(self):
+        # Menambahkan aktifitas ke file.
+        path = ['../test/', self.file['log']]
+        full_path = ''.join(path)
+        with open(full_path, 'a') as file:
+            file.write(('*' * 70) + '\n')
+            file.write('>> Persamaan dengan matriks argumented:\n')
+            file.write(str(self.matrix))
+            file.write('\n\n>> Hasil: ' + self.solution_data['message'])
+            for msg in self.solution_data['data']: file.write('\n' + msg)
+            file.write('\n' + ('*' * 70) + '\n')
+            file.close()
+
+        # Menampilkan output di file.
+        if self.output_in_file:
+            path = ['../test/', self.file['out']]
+            full_path = ''.join(path)
+            file = open(full_path, 'w')
+            file.write('')
+            file.close()
+            file = open(full_path, 'a')
+            for msg in self.solution_data['data']: file.write(msg + '\n')
+            file.close()
