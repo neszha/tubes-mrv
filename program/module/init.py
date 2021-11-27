@@ -15,7 +15,6 @@ def main_menu():
     print('[99] Keluar')
 
     choice = input('\n(?) Pilih menu: ')
-    # choice = '4'
 
     # Keluar dari console program.
     if choice == '99': console.out()
