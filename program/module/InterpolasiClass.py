@@ -10,7 +10,14 @@ class Interpolasi:
     def __init__(self, run):
         self.points = []
         self.matrix = []
+        self.output_in_file = False
+        self.file = {
+            'in': 'input.txt',
+            'out': 'output.txt',
+            'log': 'activity.txt'
+        }
         self.solution = []
+        self.test_history = []
 
         self.menu_input_method()
         self.menu_calculate_method()
@@ -57,6 +64,7 @@ class Interpolasi:
             obe = OBE(self.matrix.copy())
             obe.gauss()
             self.solution = obe.get_solution()
+            self.solution_data = obe.solution_data
             self.show_solution()
             self.calculate_estimation()
 
@@ -65,6 +73,7 @@ class Interpolasi:
             obe = OBE(self.matrix.copy())
             obe.gauss_jordan()
             self.solution = obe.get_solution()
+            self.solution_data = obe.solution_data
             self.show_solution()
             self.calculate_estimation()
 
@@ -91,15 +100,16 @@ class Interpolasi:
         self.generate_points_to_matrix_argumented()
 
     ### Membaca inputan data titik dari file.
-    ### Path file absolute dari folder '../test/'
-    ### Default path file => `interpolasi_input.txt`
+    ### Path file absolute dari folder '../test/interpolasi/'
+    ### Default path file => `input.txt`
     def input_points_from_file(self):
         console.clear()
         print('Interpolasi -> Input File:')
-        print('\nLokasi file absolute dari folder `../test/`')
+        print('\nLokasi file absolute dari folder `../test/interpolasi/`')
 
         # Menbaca data dari file.
-        path = ['../test/', 'interpolasi_input.txt']
+        self.output_in_file = True
+        path = ['../test/interpolasi/', self.file['in']]
         temp = 'Masukan nama file (default: {0}): '
         temp_input = str(input(temp.format(path[1])))
         if temp_input != '': path[1]= temp_input
@@ -148,7 +158,7 @@ class Interpolasi:
     def calculate_estimation(self):
         [row, col] = self.points.shape
         print('\nMenghitung estimasi menggunakan P'+ str(row-1) +'(X):')
-        print('[X]: [a] Menu Utama, [c] Keluar')
+        print('[X]: [a] Menu Utama, [b] Selesai')
 
         while True:
             choice = input('\n(?) Masukan nilai X: ')
@@ -156,7 +166,9 @@ class Interpolasi:
             # Aksi menu.
             if choice in ['a', 'b']:
                 if choice == 'a': init.main_menu()
-                elif choice == 'b': console.out()
+                elif choice == 'b':
+                    self.save_activity()
+                    console.out()
                 break
 
             # Melakukan perhitungan dengan rumus polinomial.
@@ -164,5 +176,34 @@ class Interpolasi:
                 x = float(choice)
                 result = 0
                 for i in range(len(self.solution)): result += self.solution[i] * pow(x, i)
-                msg = 'Hasil dari P{0}({1}) = {2}'
-                print(msg.format(row-1, x, result))
+                msg = 'P{0}({1}) = {2}'
+                parse_msg = msg.format(row-1, x, result)
+                self.test_history.append(parse_msg)
+                print('Hasil dari ' + parse_msg)
+
+    ### Menyimpan aktifitas perhitungan ke dalam file.
+    def save_activity(self):
+        string_array = []
+
+        # Menyusun output data ke dalam string.
+        string_array.append('>> Persamaan polinomial:')
+        string_array.append(self.generate_polynomial_equation_formula())
+        string_array.append('\n>> Tes polinomial:')
+        for test in self.test_history: string_array.append(test)
+
+        # Meyimpan output program ke file.
+        if self.output_in_file:
+            path = ['../test/interpolasi/', self.file['out']]
+            full_path = ''.join(path)
+            with open(full_path, 'w') as file:
+                file.write('\n'.join(string_array))
+                file.close()
+
+        # Menambahkan aktifitas ke file.
+        path = ['../test/interpolasi/', self.file['log']]
+        full_path = ''.join(path)
+        with open(full_path, 'a') as file:
+            file.write(('*' * 70) + '\n')
+            file.write('\n'.join(string_array))
+            file.write('\n' + ('*' * 70) + '\n')
+            file.close()
