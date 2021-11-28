@@ -52,4 +52,13 @@ Pada menu ini, user diminta unuk menginputkan nilai-nilai yang diminta olah prog
 
 ## MENU: Interpolasi
 
+Setelah memilih menu ini, program meminta user untuk memilih metode inputan yang ingin digunakan. Menu ini menyediakan inputan dari file dan layar konsole.
+
+Jika memilih layar konsole, program akan meminta user untuk menginputkan jumlah titi. Setelah itu, program akan meninta user untuk menginputkan nilai titik-titik data berupa (x, y). Setelah selesai, program akan memproses data tersebut untuk menghasilakan sebuah fungsi polinomial. Kemudian, user dapat melakukan testing terhadap seuatu data dengan fungsi yang telah didapat.
+
+Jika memilih file, user perlu memasukan nilai inputan pada file di lokasi "../test/interpolasi/input.txt". atau user dapat membuat file sendiri. Setelah itu, program akan membaca file tersebut dan memprosesnya untuk menghasilkan sebuah fungsi polinomial. Kemudian, user dapat melakukan testing terhadap seuatu data dengan fungsi yang telah didapat. Hasil dari perhitungan juga dapat ddilihat di file "../test/interpolasi/output.txt".
+
+Pada menu itu, segala aktifitas perhitungan akan tercatat pada file di lokasi "../test/interpolasi/activity.txt".
+
+
 
