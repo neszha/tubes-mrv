@@ -41,3 +41,15 @@ Pada menu SPL, user dapat memilih metode inputan yaitu dari file atau dari layar
 Jika, user memilih mode input dari file, maka output program dapat dilihat padda layar konsole dan pada output file. Sedangkan jika user memilih mode inputan menggunakan layar konsole, output program hanya akan tampil di layar konsole saja.
 
 Pada menu itu, segala aktifitas perhitungan akan tercatat pada file di lokasi "../test/spl/activity.txt".
+
+## MENU: Matriks Hilbert
+
+Pada menu ini, user hanya perlu mamasukan nilai berupa angka tertentu untuk dibuatkan menjadi sebuah matriks hilbert. Pada menu ini tidak disediakan fitur untuk melakukan input dari file. Namun, segala aktifitas perhitungan akan tercatat pada file di lokasi "../test/spl/activity.txt".
+
+## MENU: Rangkain Listrik
+
+Pada menu ini, user diminta unuk menginputkan nilai-nilai yang diminta olah program. Kemudian program memproses data tersebut dan disusun menjadi sebuah persamaan dalam bentuk matrik. Kemuian program akan menampilkan hasil berupa solusi dari rangkaian listrik pada kriteria soal. 
+
+## MENU: Interpolasi
+
+
