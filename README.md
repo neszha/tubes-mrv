@@ -18,4 +18,4 @@ Program ini dibuat oleh:
 
 # Dokumentasi
 
-Dokumentasi program dapat dilihat <a href="https://github.com/neszha/tubes-mrv/blob/main/doc/README.md">di sini (private).</a>
+Dokumentasi program dapat dilihat <a href="https://github.com/neszha/tubes-mrv/blob/main/doc/README.md">di sini.</a>
